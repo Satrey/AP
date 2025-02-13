@@ -1,0 +1,159 @@
+[
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.wait",
+        "description": "selenium.webdriver.support.wait",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.wait",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.wait",
+        "description": "selenium.webdriver.support.wait",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.wait",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.wait",
+        "description": "selenium.webdriver.support.wait",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.wait",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "base.base_class",
+        "description": "base.base_class",
+        "isExtraImport": true,
+        "detail": "base.base_class",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "base.base_class",
+        "description": "base.base_class",
+        "isExtraImport": true,
+        "detail": "base.base_class",
+        "documentation": {}
+    },
+    {
+        "label": "webdriver",
+        "importPath": "selenium",
+        "description": "selenium",
+        "isExtraImport": true,
+        "detail": "selenium",
+        "documentation": {}
+    },
+    {
+        "label": "Keys",
+        "importPath": "selenium.webdriver.common.keys",
+        "description": "selenium.webdriver.common.keys",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.keys",
+        "documentation": {}
+    },
+    {
+        "label": "LoginPage",
+        "importPath": "pages.login_page",
+        "description": "pages.login_page",
+        "isExtraImport": true,
+        "detail": "pages.login_page",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 6,
+        "importPath": "base.base_class",
+        "description": "base.base_class",
+        "peekOfCode": "class Base:\n    \"\"\"Базовый класс, который содержит универсальные методы\"\"\"\n    def __init__(self, driver):\n        self.driver = driver\n    \"\"\" Метод получает текущий URL \"\"\"\n    def get_current_url(self):\n        current_url = self.driver.current_url\n        print(f\"Текущий URL - {current_url}\")\n    \"\"\" Метод проверки значения текста \"\"\"\n    def assert_word(self, word_locator, result):",
+        "detail": "base.base_class",
+        "documentation": {}
+    },
+    {
+        "label": "LoginPage",
+        "kind": 6,
+        "importPath": "pages.login_page",
+        "description": "pages.login_page",
+        "peekOfCode": "class LoginPage(Base):\n    \"\"\"Класс для аутентификации пользователя в интернет магазине\"\"\"\n    # URL тестируемой страницы\n    base_url = \"https://www.saucedemo.com/\"\n    # Локаторы спользуемые на странице\n    login = \"user-name\"\n    password = \"password\"\n    login_button = \"login-button\"\n    word_locator = \"//span[@class='title']\"\n    # Геттеры",
+        "detail": "pages.login_page",
+        "documentation": {}
+    },
+    {
+        "label": "MarketPage",
+        "kind": 6,
+        "importPath": "pages.market_page",
+        "description": "pages.market_page",
+        "peekOfCode": "class MarketPage(Base):\n    \"\"\"Класс главной страницы интернет магазина\"\"\"\n    # URL тестируемой страницы\n    base_url = \"https://www.saucedemo.com/inventory.html\"\n    # Локаторы спользуемые на странице\n    button_add_to_cart = \"\"\n    button_cart = '//*[@id=\"shopping_cart_container\"]/a'\n    button_cart_bage = '//*[@id=\"shopping_cart_container\"]/a'\n    # Геттеры\n    def get_button_cart(self):",
+        "detail": "pages.market_page",
+        "documentation": {}
+    },
+    {
+        "label": "test_select_product",
+        "kind": 2,
+        "importPath": "tests.test_product",
+        "description": "tests.test_product",
+        "peekOfCode": "def test_select_product():\n    with webdriver.Chrome() as driver:\n        print(\"Start test\")\n        login_page = LoginPage(driver)\n        login_page.autentification()",
+        "detail": "tests.test_product",
+        "documentation": {}
+    }
+]
