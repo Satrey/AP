@@ -1,9 +1,6 @@
 import time
 
-# from selenium import webdriver
 from selenium.webdriver.common.by import By
-
-# from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -17,7 +14,6 @@ class MarketPage(Base):
     base_url = "https://www.saucedemo.com/inventory.html"
 
     # Локаторы спользуемые на странице
-    button_add_to_cart = ""
     button_cart = '//*[@id="shopping_cart_container"]/a'
     button_cart_bage = '//*[@id="shopping_cart_container"]/a'
 
@@ -25,46 +21,61 @@ class MarketPage(Base):
     def get_button_cart(self):
         print("Получение локатора кнопки перехода в корзину")
         return WebDriverWait(self.driver, 20).until(
-            EC.element_to_be_clickable((By.ID, self.button_cart))
+            EC.element_to_be_clickable((By.XPATH, self.button_cart))
         )
 
     def get_button_cart_bage(self):
         print("Получение значения бэйджа с количеством товара у кнопки корзина")
         return WebDriverWait(self.driver, 20).until(
-            EC.element_to_be_clickable((By.ID, self.button_cart_bage))
+            EC.element_to_be_clickable((By.XPATH, self.button_cart_bage))
         )
 
-    def get_buton_add_to_cart(self):
-        print("Получение локатора кнопки добавления товара в корзину")
-        return WebDriverWait(self.driver, 20).until(
-            EC.element_to_be_clickable((By.ID, self.button_add_to_cart))
+    def get_inventory_list(self):
+        print("Получение списка элементов на главной странице магазина")
+        inventory_list = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_all_elements_located((By.CLASS_NAME, "inventory_item"))
         )
+        return inventory_list
 
     # Действия
-    def input_user_name(self, user_name):
-        self.get_input_login().send_keys(user_name)
-        print("Ввод имени пользователя в поле Login")
+    def processing_cart(self, items, num: int, text: str):
+        item_list = {}
+        for i, item in enumerate(items, start=1):
+            if i <= num:
+                product_name = item.find_element(By.CLASS_NAME, "inventory_item_name")
+                product_price = item.find_element(By.CLASS_NAME, "inventory_item_price")
+                if text == "Add to cart":
+                    item.find_element(By.TAG_NAME, "button").click()
+                    print(
+                        f"Добавили товар {product_name.text} с ценой {product_price.text} в корзину"
+                    )
+                    item_list[product_name.text] = product_price.text.strip("$")
+                else:
+                    item_list[product_name.text] = product_price.text.strip("$")
+                    print(
+                        f"Добавили товар {product_name.text} с ценой {product_price.text} в список"
+                    )
+        return item_list
 
-    def input_password(self, password):
-        self.get_input_password().send_keys(password)
-        print("Ввод пароля в поле Password")
+    def add_to_cart(self, num: int):
+        inventory_list = self.get_inventory_list()
+        items_list = self.processing_cart(inventory_list, num, "Add to cart")
+        print("Товар добавлен в корзину - ", items_list)
+        return items_list
 
-    def click_login_button(self):
-        self.get_login_button().click()
-        print("Клик на кнопке Login")
+    def button_cart_click(self):
+        self.get_button_cart().click()
+        print("Нажатие на кнопку перехода в корзину!")
 
-    # Метод не используется в классе, оставлен для примера секции, удалить
-    # после появления методов класса.
+    def check_url_step_1(self):
+        c_url = self.get_current_url
+        self.assert_url(c_url, "https://www.saucedemo.com/checkout-step-one.html")
+
     # Методы
-    def autentification(self):
-        print("Запуск метода аутентификации пользователя")
-        self.driver.get(self.base_url)
-        self.driver.maximize_window()
-        self.get_current_url()
-
-        self.input_user_name("standard_user")
-        self.input_password("secret_sauce")
-        self.click_login_button()
-        self.assert_word(self.get_cart_word(), "Products")
-
-        time.sleep(5)
+    def add_products_to_cart(self):
+        self.add_to_cart(self.products_amount)
+        time.sleep(2)
+        self.button_cart_click()
+        time.sleep(2)
+        self.check_url_step_1()
+        time.sleep(2)

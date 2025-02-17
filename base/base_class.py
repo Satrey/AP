@@ -1,8 +1,12 @@
+import datetime
+
+
 class Base:
     """Базовый класс, который содержит универсальные методы"""
 
     def __init__(self, driver):
         self.driver = driver
+        self.products_amount = 6
 
     """ Метод получает текущий URL """
 
@@ -22,3 +26,10 @@ class Base:
     def assert_url(self, current_url, result_url):
         assert current_url == result_url, "Неудача! URL не совпадает с ожидаемым!"
         print(f"Успешно! Выполнен переход по ожидаемому url: {current_url}")
+
+    """ Метод отбражения времени """
+
+    def print_test_time(begin_text):
+        print("\n************************************************")
+        print(f"{begin_text} {datetime.datetime.now().time().strftime('%H:%M:%S')} !!!")
+        print("************************************************\n")

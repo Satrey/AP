@@ -1,5 +1,14 @@
 [
     {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
@@ -97,6 +106,14 @@
         "documentation": {}
     },
     {
+        "label": "Base",
+        "importPath": "base.base_class",
+        "description": "base.base_class",
+        "isExtraImport": true,
+        "detail": "base.base_class",
+        "documentation": {}
+    },
+    {
         "label": "webdriver",
         "importPath": "selenium",
         "description": "selenium",
@@ -105,11 +122,11 @@
         "documentation": {}
     },
     {
-        "label": "Keys",
-        "importPath": "selenium.webdriver.common.keys",
-        "description": "selenium.webdriver.common.keys",
+        "label": "CartPage",
+        "importPath": "pages.cart_page",
+        "description": "pages.cart_page",
         "isExtraImport": true,
-        "detail": "selenium.webdriver.common.keys",
+        "detail": "pages.cart_page",
         "documentation": {}
     },
     {
@@ -121,12 +138,29 @@
         "documentation": {}
     },
     {
+        "label": "MarketPage",
+        "importPath": "pages.market_page",
+        "description": "pages.market_page",
+        "isExtraImport": true,
+        "detail": "pages.market_page",
+        "documentation": {}
+    },
+    {
         "label": "Base",
         "kind": 6,
         "importPath": "base.base_class",
         "description": "base.base_class",
-        "peekOfCode": "class Base:\n    \"\"\"Базовый класс, который содержит универсальные методы\"\"\"\n    def __init__(self, driver):\n        self.driver = driver\n    \"\"\" Метод получает текущий URL \"\"\"\n    def get_current_url(self):\n        current_url = self.driver.current_url\n        print(f\"Текущий URL - {current_url}\")\n    \"\"\" Метод проверки значения текста \"\"\"\n    def assert_word(self, word_locator, result):",
+        "peekOfCode": "class Base:\n    \"\"\"Базовый класс, который содержит универсальные методы\"\"\"\n    def __init__(self, driver):\n        self.driver = driver\n        self.products_amount = 6\n    \"\"\" Метод получает текущий URL \"\"\"\n    def get_current_url(self):\n        current_url = self.driver.current_url\n        print(f\"Текущий URL - {current_url}\")\n    \"\"\" Метод проверки значения текста \"\"\"",
         "detail": "base.base_class",
+        "documentation": {}
+    },
+    {
+        "label": "CartPage",
+        "kind": 6,
+        "importPath": "pages.cart_page",
+        "description": "pages.cart_page",
+        "peekOfCode": "class CartPage(Base):\n    \"\"\"Класс страницы корзины интернет магазина (шаг-1)\"\"\"\n    # URL тестируемой страницы\n    base_url = \"https://www.saucedemo.com/checkout-step-one.html\"\n    # Локаторы спользуемые на странице\n    button_checkout = '//button[@id=\"checkout\"]'\n    # Геттеры\n    # Получение кнопки Checkout\n    def get_button_checkout(self):\n        wait = WebDriverWait(self.driver, 10)",
+        "detail": "pages.cart_page",
         "documentation": {}
     },
     {
@@ -143,7 +177,7 @@
         "kind": 6,
         "importPath": "pages.market_page",
         "description": "pages.market_page",
-        "peekOfCode": "class MarketPage(Base):\n    \"\"\"Класс главной страницы интернет магазина\"\"\"\n    # URL тестируемой страницы\n    base_url = \"https://www.saucedemo.com/inventory.html\"\n    # Локаторы спользуемые на странице\n    button_add_to_cart = \"\"\n    button_cart = '//*[@id=\"shopping_cart_container\"]/a'\n    button_cart_bage = '//*[@id=\"shopping_cart_container\"]/a'\n    # Геттеры\n    def get_button_cart(self):",
+        "peekOfCode": "class MarketPage(Base):\n    \"\"\"Класс главной страницы интернет магазина\"\"\"\n    # URL тестируемой страницы\n    base_url = \"https://www.saucedemo.com/inventory.html\"\n    # Локаторы спользуемые на странице\n    button_cart = '//*[@id=\"shopping_cart_container\"]/a'\n    button_cart_bage = '//*[@id=\"shopping_cart_container\"]/a'\n    # Геттеры\n    def get_button_cart(self):\n        print(\"Получение локатора кнопки перехода в корзину\")",
         "detail": "pages.market_page",
         "documentation": {}
     },
@@ -152,7 +186,25 @@
         "kind": 2,
         "importPath": "tests.test_product",
         "description": "tests.test_product",
-        "peekOfCode": "def test_select_product():\n    with webdriver.Chrome() as driver:\n        print(\"Start test\")\n        login_page = LoginPage(driver)\n        login_page.autentification()",
+        "peekOfCode": "def test_select_product():\n    with webdriver.Chrome() as driver:\n        print(\"Start test\")\n        login_page = LoginPage(driver)\n        login_page.autentification()\ndef test_add_product_to_cart():\n    with webdriver.Chrome() as driver:\n        login_page = LoginPage(driver)\n        market_page = MarketPage(driver)\n        login_page.autentification()",
+        "detail": "tests.test_product",
+        "documentation": {}
+    },
+    {
+        "label": "test_add_product_to_cart",
+        "kind": 2,
+        "importPath": "tests.test_product",
+        "description": "tests.test_product",
+        "peekOfCode": "def test_add_product_to_cart():\n    with webdriver.Chrome() as driver:\n        login_page = LoginPage(driver)\n        market_page = MarketPage(driver)\n        login_page.autentification()\n        market_page.add_products_to_cart()\ndef test_cart_step_1():\n    with webdriver.Chrome() as driver:\n        login_page = LoginPage(driver)\n        market_page = MarketPage(driver)",
+        "detail": "tests.test_product",
+        "documentation": {}
+    },
+    {
+        "label": "test_cart_step_1",
+        "kind": 2,
+        "importPath": "tests.test_product",
+        "description": "tests.test_product",
+        "peekOfCode": "def test_cart_step_1():\n    with webdriver.Chrome() as driver:\n        login_page = LoginPage(driver)\n        market_page = MarketPage(driver)\n        cart_step_1_page = CartPage(driver)\n        login_page.autentification()\n        market_page.add_products_to_cart()\n        cart_step_1_page.checkout()",
         "detail": "tests.test_product",
         "documentation": {}
     }
