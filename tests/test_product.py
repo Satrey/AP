@@ -7,9 +7,24 @@ from pages.market_page import MarketPage
 from pages.summary_page import SummaryPage
 
 
+def test_logout_inventory():
+    # Данные для аутентификации пользователя
+    login = "standard_user"
+    password = "secret_sauce"
+
+    with webdriver.Chrome() as driver:
+        # Экземпляры классов страниц
+        login_page = LoginPage(driver)
+        market_page = MarketPage(driver)
+
+        # Тесткейс
+        login_page.autentification(login, password)
+        market_page.log_out()
+
+
 def test_base_functionality():
     # Количество добавляемых товаров в корзину
-    products_amount = 2
+    products_amount = 3
 
     # Данные для аутентификации пользователя
     login = "standard_user"

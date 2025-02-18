@@ -24,6 +24,7 @@ class SummaryPage(Base):
 
     # Метод для получения списка товаров на странице офформления (шаг-2)
     def get_summary_list(self):
+        print("Получение списка товаров в итоговом списке")
         wait = WebDriverWait(self.driver, 10)
         summary_list = wait.until(
             EC.presence_of_all_elements_located(
@@ -33,6 +34,7 @@ class SummaryPage(Base):
         return summary_list
 
     def get_tax(self):
+        print("Получение значения комиссии")
         wait = WebDriverWait(self.driver, 10)
         # Получение значения комиссии
         tax_in_cart = wait.until(

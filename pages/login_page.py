@@ -71,5 +71,6 @@ class LoginPage(Base):
         self.input_password(password)
         self.click_login_button()
         self.assert_word(self.get_cart_word(), "Products")
+        self.assert_url("https://www.saucedemo.com/inventory.html")
 
-        time.sleep(5)
+        time.sleep(2)

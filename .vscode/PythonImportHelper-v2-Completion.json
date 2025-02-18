@@ -298,11 +298,20 @@
         "documentation": {}
     },
     {
+        "label": "test_logout_inventory",
+        "kind": 2,
+        "importPath": "tests.test_product",
+        "description": "tests.test_product",
+        "peekOfCode": "def test_logout_inventory():\n    # Данные для аутентификации пользователя\n    login = \"standard_user\"\n    password = \"secret_sauce\"\n    with webdriver.Chrome() as driver:\n        # Экземпляры классов страниц\n        login_page = LoginPage(driver)\n        market_page = MarketPage(driver)\n        # Тесткейс\n        login_page.autentification(login, password)",
+        "detail": "tests.test_product",
+        "documentation": {}
+    },
+    {
         "label": "test_base_functionality",
         "kind": 2,
         "importPath": "tests.test_product",
         "description": "tests.test_product",
-        "peekOfCode": "def test_base_functionality():\n    # Количество добавляемых товаров в корзину\n    products_amount = 2\n    # Данные для аутентификации пользователя\n    login = \"standard_user\"\n    password = \"secret_sauce\"\n    # Данные для заполнения информации о покупателе\n    first_name = \"Alex\"\n    last_name = \"Pokrashenko\"\n    zip_code = 625034",
+        "peekOfCode": "def test_base_functionality():\n    # Количество добавляемых товаров в корзину\n    products_amount = 3\n    # Данные для аутентификации пользователя\n    login = \"standard_user\"\n    password = \"secret_sauce\"\n    # Данные для заполнения информации о покупателе\n    first_name = \"Alex\"\n    last_name = \"Pokrashenko\"\n    zip_code = 625034",
         "detail": "tests.test_product",
         "documentation": {}
     }

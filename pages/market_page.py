@@ -37,8 +37,23 @@ class MarketPage(Base):
         )
         return inventory_list
 
+    def get_burger_button(self):
+        wait = WebDriverWait(self.driver, 20)
+        bm_button = wait.until(
+            (EC.element_to_be_clickable((By.ID, "react-burger-menu-btn")))
+        )
+        return bm_button
+
+    def get_burger_logout_link(self):
+        wait = WebDriverWait(self.driver, 20)
+        logout_link = wait.until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="logout_sidebar_link"]'))
+        )
+        return logout_link
+
     # Действия
     def processing_cart(self, items, num: int, text: str):
+        print("Обработка корзины")
         item_list = {}
         for i, item in enumerate(items, start=1):
             if i <= num:
@@ -67,10 +82,12 @@ class MarketPage(Base):
         self.get_button_cart().click()
         print("Нажатие на кнопку перехода в корзину!")
 
-    def check_cart_url(self):
-        c_url = self.get_current_url()
-        print(c_url)
-        self.assert_url("https://www.saucedemo.com/cart.html")
+    def burger_button_click(self):
+        print("Нажатие на кнопку ")
+        self.get_burger_button().click()
+
+    def burger_logout_link_click(self):
+        self.get_burger_logout_link().click()
 
     # Методы
     def add_products_to_cart(self, products_amount):
@@ -78,5 +95,17 @@ class MarketPage(Base):
         time.sleep(2)
         self.button_cart_click()
         time.sleep(2)
-        self.check_cart_url()
+        self.assert_url("https://www.saucedemo.com/cart.html")
         time.sleep(2)
+
+        # Выход пользователя из магазина
+
+    def log_out(self):
+        if self.get_current_url() == "https://www.saucedemo.com/inventory.html":
+            print("Успешно!!! Пользователь находится в магазине")
+            self.burger_button_click()
+            print("Нажатие на кнопку меню!")
+            time.sleep(2)
+            self.burger_logout_link_click()
+            print("Нажатие на пункт меню 'Logout'!")
+            self.assert_url("https://www.saucedemo.com/")
