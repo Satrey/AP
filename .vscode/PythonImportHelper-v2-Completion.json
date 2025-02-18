@@ -195,14 +195,6 @@
         "documentation": {}
     },
     {
-        "label": "summary_page",
-        "importPath": "pages",
-        "description": "pages",
-        "isExtraImport": true,
-        "detail": "pages",
-        "documentation": {}
-    },
-    {
         "label": "CartPage",
         "importPath": "pages.cart_page",
         "description": "pages.cart_page",

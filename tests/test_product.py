@@ -1,10 +1,5 @@
 from selenium import webdriver
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.common.keys import Keys
-# from selenium.webdriver.support.wait import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
 
-from pages import summary_page
 from pages.cart_page import CartPage
 from pages.info_page import InfoPage
 from pages.login_page import LoginPage
