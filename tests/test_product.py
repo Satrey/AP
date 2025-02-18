@@ -1,5 +1,3 @@
-# import time
-
 from selenium import webdriver
 # from selenium.webdriver.common.by import By
 # from selenium.webdriver.common.keys import Keys
@@ -7,30 +5,33 @@ from selenium import webdriver
 # from selenium.webdriver.support import expected_conditions as EC
 
 from pages.cart_page import CartPage
+from pages.info_page import InfoPage
 from pages.login_page import LoginPage
 from pages.market_page import MarketPage
 
 
-def test_select_product():
+def test_cart_step_2():
+    # Количество добавляемых товаров в корзину
+    products_amount = 2
+
+    # Данные для аутентификации пользователя
+    login = "standard_user"
+    password = "secret_sauce"
+
+    # Данные для заполнения информации о покупателе
+    first_name = "Alex"
+    last_name = "Pokrashenko"
+    zip_code = 625034
+
     with webdriver.Chrome() as driver:
-        print("Start test")
-        login_page = LoginPage(driver)
-        login_page.autentification()
-
-
-def test_add_product_to_cart():
-    with webdriver.Chrome() as driver:
-        login_page = LoginPage(driver)
-        market_page = MarketPage(driver)
-        login_page.autentification()
-        market_page.add_products_to_cart()
-
-
-def test_cart_step_1():
-    with webdriver.Chrome() as driver:
+        # Экземпляры классов страниц
         login_page = LoginPage(driver)
         market_page = MarketPage(driver)
-        cart_step_1_page = CartPage(driver)
-        login_page.autentification()
-        market_page.add_products_to_cart()
-        cart_step_1_page.checkout()
+        cart_page = CartPage(driver)
+        info_page = InfoPage(driver)
+
+        # Тесткейс
+        login_page.autentification(login, password)
+        market_page.add_products_to_cart(products_amount)
+        cart_page.checkout(products_amount)
+        info_page.set_user_info(first_name, last_name, zip_code)

@@ -61,14 +61,14 @@ class LoginPage(Base):
         print("Клик на кнопке Login")
 
     # Методы
-    def autentification(self):
+    def autentification(self, login, password):
         print("Запуск метода аутентификации пользователя")
         self.driver.get(self.base_url)
         self.driver.maximize_window()
         self.get_current_url()
 
-        self.input_user_name("standard_user")
-        self.input_password("secret_sauce")
+        self.input_user_name(login)
+        self.input_password(password)
         self.click_login_button()
         self.assert_word(self.get_cart_word(), "Products")
 

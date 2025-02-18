@@ -13,7 +13,7 @@ class MarketPage(Base):
     # URL тестируемой страницы
     base_url = "https://www.saucedemo.com/inventory.html"
 
-    # Локаторы спользуемые на странице
+    # Локаторы используемые на странице
     button_cart = '//*[@id="shopping_cart_container"]/a'
     button_cart_bage = '//*[@id="shopping_cart_container"]/a'
 
@@ -67,15 +67,16 @@ class MarketPage(Base):
         self.get_button_cart().click()
         print("Нажатие на кнопку перехода в корзину!")
 
-    def check_url_step_1(self):
-        c_url = self.get_current_url
-        self.assert_url(c_url, "https://www.saucedemo.com/checkout-step-one.html")
+    def check_cart_url(self):
+        c_url = self.get_current_url()
+        print(c_url)
+        self.assert_url("https://www.saucedemo.com/cart.html")
 
     # Методы
-    def add_products_to_cart(self):
-        self.add_to_cart(self.products_amount)
+    def add_products_to_cart(self, products_amount):
+        self.add_to_cart(products_amount)
         time.sleep(2)
         self.button_cart_click()
         time.sleep(2)
-        self.check_url_step_1()
+        self.check_cart_url()
         time.sleep(2)

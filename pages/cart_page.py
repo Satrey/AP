@@ -10,7 +10,7 @@ class CartPage(Base):
     """Класс страницы корзины интернет магазина (шаг-1)"""
 
     # URL тестируемой страницы
-    base_url = "https://www.saucedemo.com/checkout-step-one.html"
+    base_url = "https://www.saucedemo.com/cart.html"
 
     # Локаторы спользуемые на странице
     button_checkout = '//button[@id="checkout"]'
@@ -66,15 +66,16 @@ class CartPage(Base):
     def buton_checkout_click(self):
         self.get_button_checkout().click()
 
-    def check_url_step_2(self):
-        c_url = self.get_current_url
-        self.assert_url(c_url, "https://www.saucedemo.com/checkout-step-two.html")
+    def check_url_step_1(self):
+        c_url = self.get_current_url()
+        print(c_url)
+        self.assert_url("https://www.saucedemo.com/checkout-step-one.html")
 
     # Методы
-    def checkout(self):
-        self.products_in_cart(self.products_amount)
+    def checkout(self, products_amount):
+        self.products_in_cart(products_amount)
         time.sleep(2)
         self.buton_checkout_click()
         time.sleep(2)
-        self.check_url_step_2()
+        self.check_url_step_1()
         time.sleep(2)
