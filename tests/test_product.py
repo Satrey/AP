@@ -4,13 +4,15 @@ from selenium import webdriver
 # from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as EC
 
+from pages import summary_page
 from pages.cart_page import CartPage
 from pages.info_page import InfoPage
 from pages.login_page import LoginPage
 from pages.market_page import MarketPage
+from pages.summary_page import SummaryPage
 
 
-def test_cart_step_2():
+def test_base_functionality():
     # Количество добавляемых товаров в корзину
     products_amount = 2
 
@@ -29,9 +31,11 @@ def test_cart_step_2():
         market_page = MarketPage(driver)
         cart_page = CartPage(driver)
         info_page = InfoPage(driver)
+        summary_page = SummaryPage(driver)
 
         # Тесткейс
         login_page.autentification(login, password)
         market_page.add_products_to_cart(products_amount)
         cart_page.checkout(products_amount)
         info_page.set_user_info(first_name, last_name, zip_code)
+        summary_page.cart_finish(products_amount)

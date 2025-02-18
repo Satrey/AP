@@ -195,6 +195,14 @@
         "documentation": {}
     },
     {
+        "label": "summary_page",
+        "importPath": "pages",
+        "description": "pages",
+        "isExtraImport": true,
+        "detail": "pages",
+        "documentation": {}
+    },
+    {
         "label": "CartPage",
         "importPath": "pages.cart_page",
         "description": "pages.cart_page",
@@ -224,6 +232,14 @@
         "description": "pages.market_page",
         "isExtraImport": true,
         "detail": "pages.market_page",
+        "documentation": {}
+    },
+    {
+        "label": "SummaryPage",
+        "importPath": "pages.summary_page",
+        "description": "pages.summary_page",
+        "isExtraImport": true,
+        "detail": "pages.summary_page",
         "documentation": {}
     },
     {
@@ -285,16 +301,16 @@
         "kind": 6,
         "importPath": "pages.summary_page",
         "description": "pages.summary_page",
-        "peekOfCode": "class SummaryPage(Base):\n    \"\"\"\n    Класс для тестирования страницы оформления заказа (шаг-2),\n    проверки стоимости заказа и комиссии\n    \"\"\"",
+        "peekOfCode": "class SummaryPage(Base):\n    \"\"\"\n    Класс для тестирования страницы оформления заказа (шаг-2),\n    проверки стоимости заказа и комиссии\n    \"\"\"\n    # Локаторы для поиска элементов на странице 'SummaryPage'\n    summary_list_locator = \"cart_item\"\n    summary_tax_label_locator = \"summary_tax_label\"\n    summary_total_locator = \"summary_total_label\"\n    summary_subtotal_locator = \"summary_subtotal_label\"",
         "detail": "pages.summary_page",
         "documentation": {}
     },
     {
-        "label": "test_cart_step_2",
+        "label": "test_base_functionality",
         "kind": 2,
         "importPath": "tests.test_product",
         "description": "tests.test_product",
-        "peekOfCode": "def test_cart_step_2():\n    # Количество добавляемых товаров в корзину\n    products_amount = 2\n    # Данные для аутентификации пользователя\n    login = \"standard_user\"\n    password = \"secret_sauce\"\n    # Данные для заполнения информации о покупателе\n    first_name = \"Alex\"\n    last_name = \"Pokrashenko\"\n    zip_code = 625034",
+        "peekOfCode": "def test_base_functionality():\n    # Количество добавляемых товаров в корзину\n    products_amount = 2\n    # Данные для аутентификации пользователя\n    login = \"standard_user\"\n    password = \"secret_sauce\"\n    # Данные для заполнения информации о покупателе\n    first_name = \"Alex\"\n    last_name = \"Pokrashenko\"\n    zip_code = 625034",
         "detail": "tests.test_product",
         "documentation": {}
     }
